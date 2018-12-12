@@ -61,9 +61,13 @@ public
 # Mac files
 .DS_Store
 
+# Firebase directory
+.firebase/
+
 # Yarn
 yarn-error.log
 .pnp/
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+.firebaserc
