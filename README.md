@@ -4,8 +4,15 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby's default starter
+  Mark's Portfolio Site
 </h1>
+
+This project was bootstraped by Gatsby's Default Starter.
+
+## 👨🏽‍💻 Firebase Deployment
+This app is configured to be deployed on firebase. To begin ensure you have [firebase-tools](https://www.npmjs.com/package/firebase-tools). Run `firebase init` to set up your site to be hosted on a firebase application.
+
+<hr/>
 
 Kick off your project with this default boilerplate ([live demo](https://gatsby-starter-default-demo.netlify.com/)). This barebones starter ships with the main Gatsby configuration files you might need. 
 
