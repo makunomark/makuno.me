@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { Tag, Avatar, Icon } from 'antd'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout activePage="home">
     <SEO title="Home" keywords={['mark', 'makuno', 'gachoka']} />
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -20,25 +20,30 @@ const IndexPage = () => (
         }}
       >
         <Avatar size={150} icon="user" src={require('../images/marc.jpg')} />
-        <h1 style={{ marginTop: 12, fontWeight: 'normal' }}>Mark Makuno</h1>
+        <h1 style={{ marginTop: 12, fontWeight: 'normal' }}>
+          {data.site.siteMetadata.title}
+        </h1>
         <div>
           <Tag color="geekblue">Software Engineer</Tag>
           <Tag color="geekblue">Open source</Tag>
           <Tag color="geekblue">Full Stack developer</Tag>
         </div>
         <p style={{ marginTop: 40 }}>
-          I am a Mobile &amp; Web architect, from Nairobi, Kenya. I specialize
-          in applications development. Currently, I work as a Software Engineer
-          at{' '}
+          I am a Mobile &amp; Web architect, from the city under the sun. I
+          specialize in applications development. Currently, I work as a
+          Software Engineer at{' '}
           <a href="https://twiga.ke" target="_blank">
             Twiga Foods
           </a>{' '}
-          Nairobi, Kenya.
+          in Nairobi, Kenya.
         </p>
         <p style={{ marginTop: 12 }}>
-          My core skills are JavaScript (React, React Native, Next.js &amp;
-          NodeJs), Java &amp; XML. Want to know more? Drop me a line:
-          makunomark@gmail.com
+          My core skills are Android <i>(Java, Kotlin &amp; XML)</i> and
+          JavaScript{' '}
+          <i>
+            (React, React Native, Next.js, NodeJs &amp; most recently Gatsby)
+          </i>
+          . I am currently learning GoLang.
         </p>
         <div>
           <a
@@ -71,3 +76,13 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
