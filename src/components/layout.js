@@ -53,7 +53,7 @@ const Layout = ({ children, activePage }) => (
             textAlign: 'center'
           }}
         >
-          <span>Mark Makuno ©2019</span>{' '}
+          <span>Mark Makuno ©2018</span>{' '}
           <span>
             Design inspired by{' '}
             <a href="https://www.vauxlab.com/">Thijs Koerselman's Site</a>

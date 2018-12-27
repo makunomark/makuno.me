@@ -71,3 +71,6 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 .firebaserc
+
+# firebase primary key
+firebase-primary-key.json
