@@ -39,7 +39,7 @@ module.exports = {
             type: 'Highlights',
             collection: 'highlights',
             map: doc => ({
-              highlight: doc.highlight
+              highlight: doc.highlight,
             }),
           },
           {
@@ -48,9 +48,35 @@ module.exports = {
             map: doc => ({
               icon: doc.icon,
               link: doc.link,
-              theme: doc.theme
-            })
-          }
+              theme: doc.theme,
+            }),
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Mark Makuno`,
+        short_name: `GatsbyJS`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: `standalone`,
+        legacy: true,
+        icons: [
+          {
+            src: `/favicons/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
         ],
       },
     },
