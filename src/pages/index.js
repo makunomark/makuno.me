@@ -47,6 +47,9 @@ const IndexPage = ({ data }) => {
             </i>
             . I am, at the moment, learning GoLang.
           </p>
+          <p style={{ marginTop: 12 }}>
+            Here's a link to my <a href={'https://drive.google.com/open?id=1VFM5L0qv5uS6Wo8uVg-RAYm3qe328oVI'} target='_blank'>Resume/Curriculum Vitae</a>
+          </p>
           <div>
             {data.allSocialMediaLinks.edges.map(edge => (
               <a href={edge.node.link} target="_blank">
