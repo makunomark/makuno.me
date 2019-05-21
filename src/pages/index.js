@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
             marginTop: 40,
           }}
         >
-          <Avatar size={150} icon="user" src={require('../images/marc.jpg')} />
+          <Avatar size={150} icon="user" src={require('../images/marc.png')} />
           <h1 style={{ marginTop: 12, fontWeight: 'normal' }}>
             {data.site.siteMetadata.title || ''}
           </h1>
