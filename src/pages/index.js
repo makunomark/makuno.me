@@ -7,20 +7,22 @@ const IndexPage = () => {
   return (
     <>
       <nav>
-        <div className="container">
+        <div
+          className="container"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <div className="row">
             <div className="column">
-              <h4>Mark Makuno Gachoka</h4>
+              <h6>Mark Makuno Gachoka</h6>
             </div>
-            <div class="column column-50 column-offset-25">
-              <div className="row">
-                <Link to="/projects/" className="column column-offset-75">
-                  Projects
-                </Link>
-                <Link to="/contact/" className="column">
-                  Contact
-                </Link>
-              </div>
+            <div
+              className="column"
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <Link to="/projects/" style={{ marginRight: 12 }}>
+                Projects
+              </Link>
+              <Link to="/contact/">Contact</Link>
             </div>
           </div>
         </div>
