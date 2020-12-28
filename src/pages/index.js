@@ -4,6 +4,20 @@ import ReactFullpage from "@fullpage/react-fullpage"; // will return static vers
 
 import Layout from "../components/layout";
 
+import styled from "@emotion/styled";
+
+const Div = styled.div`
+  display: "flex";
+  flex-direction: "column";
+  color: white;
+  font-family: "Gochi Hand", cursive;
+  font-size: 32px;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    font-size: 18px;
+  }
+  text-align: center;
+`;
+
 const IndexPage = () => {
   return (
     <ReactFullpage
@@ -20,16 +34,7 @@ const IndexPage = () => {
           <ReactFullpage.Wrapper>
             <div className="section">
               <Layout>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "white",
-                    fontFamily: "Gochi Hand, cursive",
-                    fontSize: 32,
-                    textAlign: "center",
-                  }}
-                >
+                <Div>
                   <Typing>
                     Hi there, I am Mark Makuno Gachoka
                     <br />
@@ -51,21 +56,12 @@ const IndexPage = () => {
                     Recently, I have been trying to use Kotlin.
                     <Typing.Delay ms={200} /> For some typed goodness. 😜
                   </Typing>
-                </div>
+                </Div>
               </Layout>
             </div>
             <div className="section">
               <Layout>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    color: "white",
-                    fontFamily: "Gochi Hand, cursive",
-                    fontSize: 32,
-                    textAlign: "center",
-                  }}
-                >
+                <Div>
                   <Typing>
                     I currently work at{" "}
                     <a href="https://twiga.ke">Twiga Foods</a> as a Software
@@ -78,7 +74,7 @@ const IndexPage = () => {
                     have been writing cloud functions to deliver reports to our
                     users through the app.
                   </Typing>
-                </div>
+                </Div>
               </Layout>
             </div>
           </ReactFullpage.Wrapper>
