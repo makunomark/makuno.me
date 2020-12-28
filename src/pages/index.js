@@ -26,7 +26,6 @@ const IndexPage = () => {
       loopTop
       loopBottom
       sectionsColor={["#35495e", "#0798ec"]}
-      navigationTooltips={["Home", "Experience"]}
       navigation
       scrollingSpeed={1000} /* Options here */
       render={({ state, fullpageApi }) => {
