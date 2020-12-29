@@ -20,10 +20,13 @@
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@fullpage/react-fullpage": "^0.1.18",
+    "framer-motion": "^3.1.1",
     "gatsby": "^2.26.1",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-react-helmet": "^3.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-typing-animation": "^1.6.2"
   }
 }
