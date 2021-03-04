@@ -39,7 +39,10 @@ const Tag = styled.span`
 export default function Landing() {
   return (
     <LandingPage>
-      <Image src="http://placekitten.com/300/300" alt="" />
+      <Image
+        src="https://res.cloudinary.com/dzm2zrijg/image/upload/v1614881740/large_7_V8_A3311_53d77326f2.jpg"
+        alt=""
+      />
       <Description>
         Hello. My name is Mark M. Gachoka. I'm a Software Engineer currently
         working at Twiga Foods. Previously, at Kuhustle.
