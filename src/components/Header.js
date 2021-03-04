@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 
+import { graphql, useStaticQuery } from "gatsby";
+
 const Nav = styled.nav`
   background-color: #f5f5f5 !important;
   display: flex;

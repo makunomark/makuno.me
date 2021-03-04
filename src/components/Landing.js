@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useStaticQuery, graphql } from "gatsby";
+
+import styled from "@emotion/styled";
+
 import GithubIcon from "../images/github.svg";
 import LinkedInIcon from "../images/linkedin.svg";
 import TwitterIcon from "../images/twitter.svg";
-
-import styled from "@emotion/styled";
 
 const LandingPage = styled.div`
   display: flex;
@@ -57,35 +60,70 @@ const TagsHolder = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Landing() {
+const Landing = () => {
+  const data = useStaticQuery(graphql`
+    query StrapiHomePage {
+      allStrapiHomePage {
+        edges {
+          node {
+            personal_tags
+            personal_description
+            github_url
+            linked_in_url
+            twitter_url
+            avatar {
+              childImageSharp {
+                fluid {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const nodeData = data.allStrapiHomePage.edges[0].node;
+  console.log(nodeData);
   return (
     <LandingPage>
       <Image
-        src="https://res.cloudinary.com/dzm2zrijg/image/upload/v1614881740/large_7_V8_A3311_53d77326f2.jpg"
-        alt=""
+        src={
+          "http://localhost:8000" + nodeData.avatar.childImageSharp.fluid.src
+        }
+        alt="Avatar"
       />
 
-      <Description>
-        Hello. My name is Mark M. Gachoka. I'm a Software Engineer currently
-        working at Twiga Foods. Previously, at Kuhustle.
-      </Description>
+      <Description>{nodeData.personal_description}</Description>
 
       <TagsHolder>
-        <Tag>Software Engineer</Tag>
-        <Tag>Full Stack Developer</Tag>
+        {nodeData.personal_tags.map((tag) => (
+          <Tag>{tag}</Tag>
+        ))}
       </TagsHolder>
 
       <IconsHolder>
-        <IconHolder>
-          <GithubIcon />
-        </IconHolder>
-        <IconHolder>
-          <TwitterIcon />
-        </IconHolder>
-        <IconHolder>
-          <LinkedInIcon />
-        </IconHolder>
+        {nodeData.github_url ? (
+          <IconHolder href={nodeData.github_url} target="_blank">
+            <GithubIcon />
+          </IconHolder>
+        ) : null}
+
+        {nodeData.twitter_url ? (
+          <IconHolder href={nodeData.twitter_url} target="_blank">
+            <TwitterIcon />
+          </IconHolder>
+        ) : null}
+
+        {nodeData.linked_in_url ? (
+          <IconHolder href={nodeData.linked_in_url} target="_blank">
+            <LinkedInIcon />
+          </IconHolder>
+        ) : null}
       </IconsHolder>
     </LandingPage>
   );
-}
+};
+
+export default Landing;

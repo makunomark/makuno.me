@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.development`,
+});
+
 module.exports = {
   siteMetadata: {
     title: "makuno.dev",
@@ -19,5 +23,15 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.API_URL || "http://localhost:1337",
+        contentTypes: ["project", "home-page", "technology"],
+        queryLimit: 1000,
+      },
+    },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
   ],
 };
