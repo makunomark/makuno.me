@@ -3,12 +3,20 @@ import styled from "@emotion/styled";
 
 const Nav = styled.nav`
   background-color: #f5f5f5 !important;
+  display: flex;
+  justify-content: center;
+`;
+
+const NavHolder = styled.div`
+  max-width: 112rem;
+  flex: 1;
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 8px;
   padding-right: 8px;
   display: flex;
   justify-content: space-between;
+  font-family: "Poppins", sans-serif;
 `;
 
 const HeaderIcon = styled.a`
@@ -25,16 +33,21 @@ const HeaderLinks = styled.a`
   margin-left: 6px;
   margin-right: 6px;
   cursor: pointer;
+  text-decoration: underline;
+  text-underline-position: under;
+  font-weight: 500;
 `;
 
 export default function Header() {
   return (
     <Nav>
-      <HeaderIcon>Makuno</HeaderIcon>
-      <div>
-        <HeaderLinks>Home</HeaderLinks>
-        <HeaderLinks>Work</HeaderLinks>
-      </div>
+      <NavHolder>
+        <HeaderIcon>Makuno</HeaderIcon>
+        <div>
+          <HeaderLinks>Home</HeaderLinks>
+          <HeaderLinks>Work</HeaderLinks>
+        </div>
+      </NavHolder>
     </Nav>
   );
 }

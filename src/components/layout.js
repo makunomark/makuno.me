@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./Header";
 import styled from "@emotion/styled";
 
 import "../styles/global.css";
@@ -10,10 +11,13 @@ const Main = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <Main className="container" style={{ padding: 0 }}>
-      <div className="row">
-        <div className="column">{children}</div>
-      </div>
-    </Main>
+    <>
+      <Header />
+      <Main className="container" style={{ padding: 0 }}>
+        <div className="row">
+          <div className="column">{children}</div>
+        </div>
+      </Main>
+    </>
   );
 }
