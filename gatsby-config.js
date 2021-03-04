@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Gochi Hand`, `cursive`],
+        fonts: [`Poppins`, `sans-serif`],
         display: "swap",
       },
     },

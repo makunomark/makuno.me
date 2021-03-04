@@ -1,12 +1,19 @@
 import React from "react";
+import styled from "@emotion/styled";
+
+import "../styles/global.css";
 import "./milligram.min.css";
+
+const Main = styled.div`
+  font-family: "Poppins", sans-serif;
+`;
 
 export default function Layout({ children }) {
   return (
-    <main className="container">
+    <Main className="container" style={{ padding: 0 }}>
       <div className="row">
         <div className="column">{children}</div>
       </div>
-    </main>
+    </Main>
   );
 }
