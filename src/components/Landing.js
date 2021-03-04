@@ -85,12 +85,14 @@ const Landing = () => {
   `);
 
   const nodeData = data.allStrapiHomePage.edges[0].node;
-  console.log(nodeData);
+  console.log(process.env.GATSBY_DEV);
   return (
     <LandingPage>
       <Image
         src={
-          "http://localhost:8000" + nodeData.avatar.childImageSharp.fluid.src
+          process.env.GATSBY_DEV === "development"
+            ? "http://localhost:8000"
+            : "https://makuno.dev" + nodeData.avatar.childImageSharp.fluid.src
         }
         alt="Avatar"
       />
