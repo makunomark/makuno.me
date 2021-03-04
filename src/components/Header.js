@@ -45,7 +45,6 @@ export default function Header() {
         <HeaderIcon>Makuno</HeaderIcon>
         <div>
           <HeaderLinks>Home</HeaderLinks>
-          <HeaderLinks>Work</HeaderLinks>
         </div>
       </NavHolder>
     </Nav>

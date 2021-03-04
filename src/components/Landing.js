@@ -9,6 +9,7 @@ const LandingPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 4px;
 `;
 
 const Image = styled.img`
@@ -35,6 +36,8 @@ const Tag = styled.span`
   margin-right: 2px;
   padding-top: 4px;
   padding-bottom: 4px;
+  margin-top: 2px;
+  font-size: 12px;
 `;
 
 const IconHolder = styled.a`
@@ -47,6 +50,11 @@ const IconHolder = styled.a`
 const IconsHolder = styled.div`
   margin-top: 48px;
   margin-bottom: 24px;
+`;
+
+const TagsHolder = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export default function Landing() {
@@ -62,10 +70,10 @@ export default function Landing() {
         working at Twiga Foods. Previously, at Kuhustle.
       </Description>
 
-      <div>
+      <TagsHolder>
         <Tag>Software Engineer</Tag>
         <Tag>Full Stack Developer</Tag>
-      </div>
+      </TagsHolder>
 
       <IconsHolder>
         <IconHolder>
