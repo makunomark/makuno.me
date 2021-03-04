@@ -85,7 +85,6 @@ const Landing = () => {
   `);
 
   const nodeData = data.allStrapiHomePage.edges[0].node;
-  console.log(process.env.GATSBY_DEV);
   return (
     <LandingPage>
       <Image
