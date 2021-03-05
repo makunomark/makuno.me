@@ -8,11 +8,17 @@ import GithubIcon from "../images/github.svg";
 import LinkedInIcon from "../images/linkedin.svg";
 import TwitterIcon from "../images/twitter.svg";
 
+const Page = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const LandingPage = styled.div`
   display: flex;
+  max-width: 112rem;
   flex-direction: column;
   align-items: center;
-  padding: 4px;
+  padding: 12px;
 `;
 
 const Image = styled.img`
@@ -86,44 +92,46 @@ const Landing = () => {
 
   const nodeData = data.allStrapiHomePage.edges[0].node;
   return (
-    <LandingPage>
-      <Image
-        src={
-          process.env.GATSBY_DEV === "development"
-            ? "http://localhost:8000"
-            : "https://makuno.dev" + nodeData.avatar.childImageSharp.fluid.src
-        }
-        alt="Avatar"
-      />
+    <Page>
+      <LandingPage>
+        <Image
+          src={
+            process.env.GATSBY_DEV === "development"
+              ? "http://localhost:8000"
+              : "https://makuno.dev" + nodeData.avatar.childImageSharp.fluid.src
+          }
+          alt="Avatar"
+        />
 
-      <Description>{nodeData.personal_description}</Description>
+        <Description>{nodeData.personal_description}</Description>
 
-      <TagsHolder>
-        {nodeData.personal_tags.map((tag) => (
-          <Tag>{tag}</Tag>
-        ))}
-      </TagsHolder>
+        <TagsHolder>
+          {nodeData.personal_tags.map((tag) => (
+            <Tag>{tag}</Tag>
+          ))}
+        </TagsHolder>
 
-      <IconsHolder>
-        {nodeData.github_url ? (
-          <IconHolder href={nodeData.github_url} target="_blank">
-            <GithubIcon />
-          </IconHolder>
-        ) : null}
+        <IconsHolder>
+          {nodeData.github_url ? (
+            <IconHolder href={nodeData.github_url} target="_blank">
+              <GithubIcon />
+            </IconHolder>
+          ) : null}
 
-        {nodeData.twitter_url ? (
-          <IconHolder href={nodeData.twitter_url} target="_blank">
-            <TwitterIcon />
-          </IconHolder>
-        ) : null}
+          {nodeData.twitter_url ? (
+            <IconHolder href={nodeData.twitter_url} target="_blank">
+              <TwitterIcon />
+            </IconHolder>
+          ) : null}
 
-        {nodeData.linked_in_url ? (
-          <IconHolder href={nodeData.linked_in_url} target="_blank">
-            <LinkedInIcon />
-          </IconHolder>
-        ) : null}
-      </IconsHolder>
-    </LandingPage>
+          {nodeData.linked_in_url ? (
+            <IconHolder href={nodeData.linked_in_url} target="_blank">
+              <LinkedInIcon />
+            </IconHolder>
+          ) : null}
+        </IconsHolder>
+      </LandingPage>
+    </Page>
   );
 };
 

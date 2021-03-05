@@ -3,10 +3,12 @@ import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import Technologies from "./Technologies";
 
-const PageTitle = styled.h2`
+const PageTitle = styled.p`
   text-transform: uppercase;
   color: black;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: xx-large;
+  text-decoration: underline;
 `;
 
 const PageBackground = styled.div`
@@ -27,17 +29,19 @@ const Page = styled.div`
 
 const ProjectItemHolder = styled.div`
   display: flex;
+  width: 98%;
+  @media (min-width: 426px) {
+    width: 48%;
+  }
   background-color: white;
   border-radius: 10px;
   padding: 12px;
   margin-top: 12px;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 4px;
+  margin-right: 4px;
 `;
 
 const ProjectIcon = styled.img`
-  flex: 1;
-  height: 50%;
   max-width: 20%;
 `;
 
@@ -68,6 +72,17 @@ const MidDot = styled.span`
   margin-left: 12px;
 `;
 
+const ProjectsList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 12px;
+  margin-right: 12px;
+`;
+
+const ProjectsDescription = styled.p`
+  text-align: center;
+`;
+
 const Projects = () => {
   const myProjects = useStaticQuery(graphql`
     query AllStrapiProjectQuery {
@@ -93,27 +108,36 @@ const Projects = () => {
   return (
     <PageBackground>
       <Page>
-        <PageTitle>My Projects</PageTitle>
+        <PageTitle>Projects</PageTitle>
+        <ProjectsDescription>
+          A showcase of projects worked on, and technologies used.
+        </ProjectsDescription>
         <Technologies />
-        {myProjectsData.map((myProject) => (
-          <ProjectItemHolder>
-            <ProjectIcon src={myProject.node.icon[0].url} />
-            <ProjectDetailsHolder>
-              <ProjectTitle>{myProject.node.title}</ProjectTitle>
-              <ProjectDescription>
-                {myProject.node.description}
-              </ProjectDescription>
-              {myProject.node.technologies.map((technology, index) => (
-                <>
-                  <Technology>{technology.name}</Technology>
-                  {index == myProject.node.technologies.length - 1 ? null : (
-                    <MidDot>·</MidDot>
-                  )}
-                </>
-              ))}
-            </ProjectDetailsHolder>
-          </ProjectItemHolder>
-        ))}
+        <ProjectsList>
+          {myProjectsData.map((myProject) => (
+            <ProjectItemHolder>
+              <ProjectIcon
+                src={myProject.node.icon[0].url}
+                height={96}
+                width={96}
+              />
+              <ProjectDetailsHolder>
+                <ProjectTitle>{myProject.node.title}</ProjectTitle>
+                <ProjectDescription>
+                  {myProject.node.description}
+                </ProjectDescription>
+                {myProject.node.technologies.map((technology, index) => (
+                  <>
+                    <Technology>{technology.name}</Technology>
+                    {index == myProject.node.technologies.length - 1 ? null : (
+                      <MidDot>·</MidDot>
+                    )}
+                  </>
+                ))}
+              </ProjectDetailsHolder>
+            </ProjectItemHolder>
+          ))}
+        </ProjectsList>
       </Page>
     </PageBackground>
   );

@@ -23,6 +23,7 @@ const TechnologiesHolder = styled.div`
   margin-left: 8px;
   margin-right: 8px;
   justify-content: center;
+  margin-bottom: 12px;
 `;
 
 const Technologies = () => {
