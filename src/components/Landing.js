@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -35,8 +35,8 @@ const Description = styled.p`
 `;
 
 const Tag = styled.span`
-  background-color: black;
-  color: white;
+  background-color: rgba(87, 199, 255, 0.2);
+  color: black;
   font-weight: bold;
   border-radius: 25px;
   padding-left: 12px;

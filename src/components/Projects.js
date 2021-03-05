@@ -65,11 +65,14 @@ const ProjectDescription = styled.p`
   line-height: 1.8em;
 `;
 
-const Technology = styled.span``;
+const Technology = styled.span`
+  color: #f18f33;
+`;
 
 const MidDot = styled.span`
   margin-right: 12px;
   margin-left: 12px;
+  color: #f18f33;
 `;
 
 const ProjectsList = styled.div`
@@ -81,6 +84,8 @@ const ProjectsList = styled.div`
 
 const ProjectsDescription = styled.p`
   text-align: center;
+  margin-right: 12px;
+  margin-left: 12px;
 `;
 
 const Projects = () => {
