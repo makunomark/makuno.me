@@ -19,6 +19,10 @@ const Tag = styled.span`
 
 const TechnologiesHolder = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  margin-left: 8px;
+  margin-right: 8px;
+  justify-content: center;
 `;
 
 const Technologies = () => {

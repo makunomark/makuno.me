@@ -31,11 +31,14 @@ const ProjectItemHolder = styled.div`
   border-radius: 10px;
   padding: 12px;
   margin-top: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
 `;
 
 const ProjectIcon = styled.img`
   flex: 1;
   height: 50%;
+  max-width: 20%;
 `;
 
 const ProjectDetailsHolder = styled.div`
