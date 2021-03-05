@@ -80,11 +80,7 @@ const Projects = () => {
             title
             description
             icon {
-              formats {
-                thumbnail {
-                  url
-                }
-              }
+              url
             }
           }
         }
@@ -93,7 +89,6 @@ const Projects = () => {
   `);
 
   const myProjectsData = myProjects.allStrapiProject.edges;
-  console.log(myProjectsData);
 
   return (
     <PageBackground>
@@ -102,7 +97,7 @@ const Projects = () => {
         <Technologies />
         {myProjectsData.map((myProject) => (
           <ProjectItemHolder>
-            <ProjectIcon src={myProject.node.icon[0].formats.thumbnail.url} />
+            <ProjectIcon src={myProject.node.icon[0].url} />
             <ProjectDetailsHolder>
               <ProjectTitle>{myProject.node.title}</ProjectTitle>
               <ProjectDescription>
