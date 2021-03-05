@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 
 import Layout from "../components/layout";
 import Landing from "../components/Landing";
+import Projects from "../components/Projects";
 
 const IndexPage = () => {
   return (
@@ -12,6 +13,7 @@ const IndexPage = () => {
         <title>Mark Gachoka | Home</title>
       </Helmet>
       <Landing />
+      <Projects />
     </Layout>
   );
 };

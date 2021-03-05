@@ -1,0 +1,48 @@
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import styled from "@emotion/styled";
+
+const Tag = styled.span`
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 2px;
+  font-size: 12px;
+`;
+
+const TechnologiesHolder = styled.div`
+  display: flex;
+`;
+
+const Technologies = () => {
+  const allTechnologies = useStaticQuery(graphql`
+    query AllStrapiTechnologyQuery {
+      allStrapiTechnology {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  const technologies = allTechnologies.allStrapiTechnology.edges;
+
+  return (
+    <TechnologiesHolder>
+      {technologies.map((technology) => (
+        <Tag>{technology.node.name}</Tag>
+      ))}
+    </TechnologiesHolder>
+  );
+};
+
+export default Technologies;
