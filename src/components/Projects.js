@@ -66,13 +66,13 @@ const ProjectDescription = styled.p`
 `;
 
 const Technology = styled.span`
-  color: #f18f33;
+  color: rgba(87, 199, 255);
 `;
 
 const MidDot = styled.span`
   margin-right: 12px;
   margin-left: 12px;
-  color: #f18f33;
+  color: rgba(87, 199, 255);
 `;
 
 const ProjectsList = styled.div`
