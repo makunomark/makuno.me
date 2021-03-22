@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { motion } from "framer-motion";
+
 import Technologies from "./Technologies";
 
 const PageTitle = styled.p`
@@ -121,25 +123,33 @@ const Projects = () => {
         <ProjectsList>
           {myProjectsData.map((myProject) => (
             <ProjectItemHolder>
-              <ProjectIcon
-                src={myProject.node.icon[0].url}
-                height={96}
-                width={96}
-              />
-              <ProjectDetailsHolder>
-                <ProjectTitle>{myProject.node.title}</ProjectTitle>
-                <ProjectDescription>
-                  {myProject.node.description}
-                </ProjectDescription>
-                {myProject.node.technologies.map((technology, index) => (
-                  <>
-                    <Technology>{technology.name}</Technology>
-                    {index == myProject.node.technologies.length - 1 ? null : (
-                      <MidDot>·</MidDot>
-                    )}
-                  </>
-                ))}
-              </ProjectDetailsHolder>
+              <motion.div
+                animate={{ scale: [0.99, 1] }}
+                transition={{ duration: 0.5 }}
+                whileTap={{ scale: 0.99 }}
+                whileHover={{ scale: 1.01 }}
+              >
+                <ProjectIcon
+                  src={myProject.node.icon[0].url}
+                  height={96}
+                  width={96}
+                />
+                <ProjectDetailsHolder>
+                  <ProjectTitle>{myProject.node.title}</ProjectTitle>
+                  <ProjectDescription>
+                    {myProject.node.description}
+                  </ProjectDescription>
+                  {myProject.node.technologies.map((technology, index) => (
+                    <>
+                      <Technology>{technology.name}</Technology>
+                      {index ==
+                      myProject.node.technologies.length - 1 ? null : (
+                        <MidDot>·</MidDot>
+                      )}
+                    </>
+                  ))}
+                </ProjectDetailsHolder>
+              </motion.div>
             </ProjectItemHolder>
           ))}
         </ProjectsList>
