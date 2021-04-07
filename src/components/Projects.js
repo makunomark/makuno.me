@@ -10,7 +10,6 @@ const PageTitle = styled.p`
   color: black;
   font-weight: bolder;
   font-size: xx-large;
-  text-decoration: underline;
 `;
 
 const PageBackground = styled.div`
