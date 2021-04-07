@@ -15,8 +15,7 @@ const LandingPage = styled.div`
   display: flex;
   max-width: 112rem;
   flex-direction: column;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px;
 `;
 
 const ProjectTitle = styled.p`
