@@ -62,7 +62,7 @@ const EmptyProjectsView = styled.div`
   align-items: center;
 `;
 
-const LinkContent = styled.a`
+const LinkContent = styled.span`
   color: black;
   text-decoration: underline;
 `;
