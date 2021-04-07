@@ -85,12 +85,11 @@ export default function Projects({ location }) {
 
   return (
     <Layout>
-      {(value) => {
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Projects | Selected Project</title>
-        </Helmet>;
-      }}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Projects</title>
+      </Helmet>
+
       <Page>
         <LandingPage>
           <ProjectListContext.Consumer>
@@ -139,6 +138,10 @@ export default function Projects({ location }) {
 
           {selectedProject ? (
             <>
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>Projects | {selectedProject.title}</title>
+              </Helmet>
               <ProjectTitle>{selectedProject.title}</ProjectTitle>
               <ProjectDescription>
                 {selectedProject.description}
