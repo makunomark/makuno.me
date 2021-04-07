@@ -93,47 +93,60 @@ export default function Projects({ location }) {
       <Page>
         <LandingPage>
           <ProjectListContext.Consumer>
-            {(projects) =>
-              projects.projectList != null &&
-              projects.projectList.length > 0 ? (
-                <ProjectCarousel>
-                  {position - 1 < 0 ? (
-                    <FiSmile />
-                  ) : (
-                    <ProjectCarouselItem
-                      onClick={() =>
-                        updateSelectedProject(
-                          projects.projectList[position - 1].node,
-                          position - 1
-                        )
-                      }
-                    >
-                      <FiChevronLeft />
-                      <span>
-                        {projects.projectList[position - 1].node.title}
-                      </span>
-                    </ProjectCarouselItem>
-                  )}
-                  {position + 1 < projects.projectList.length ? (
-                    <ProjectCarouselItem
-                      onClick={() =>
-                        updateSelectedProject(
-                          projects.projectList[position + 1].node,
-                          position + 1
-                        )
-                      }
-                    >
-                      <span>
-                        {projects.projectList[position + 1].node.title}
-                      </span>
-                      <FiChevronRight />
-                    </ProjectCarouselItem>
-                  ) : (
-                    <FiSmile />
-                  )}
-                </ProjectCarousel>
-              ) : null
-            }
+            {(projects) => {
+              if (
+                projects.projectList != null &&
+                projects.projectList.length > 0
+              ) {
+                if (selectedProject == null) {
+                  updateSelectedProject(
+                    projects.projectList[position].node,
+                    position
+                  );
+                }
+
+                return (
+                  <ProjectCarousel>
+                    {position - 1 < 0 ? (
+                      <FiSmile />
+                    ) : (
+                      <ProjectCarouselItem
+                        onClick={() =>
+                          updateSelectedProject(
+                            projects.projectList[position - 1].node,
+                            position - 1
+                          )
+                        }
+                      >
+                        <FiChevronLeft />
+                        <span>
+                          {projects.projectList[position - 1].node.title}
+                        </span>
+                      </ProjectCarouselItem>
+                    )}
+                    {position + 1 < projects.projectList.length ? (
+                      <ProjectCarouselItem
+                        onClick={() =>
+                          updateSelectedProject(
+                            projects.projectList[position + 1].node,
+                            position + 1
+                          )
+                        }
+                      >
+                        <span>
+                          {projects.projectList[position + 1].node.title}
+                        </span>
+                        <FiChevronRight />
+                      </ProjectCarouselItem>
+                    ) : (
+                      <FiSmile />
+                    )}
+                  </ProjectCarousel>
+                );
+              }
+
+              return null;
+            }}
           </ProjectListContext.Consumer>
 
           {selectedProject ? (
