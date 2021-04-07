@@ -8,7 +8,7 @@ import Technologies from "./Technologies";
 const PageTitle = styled.p`
   text-transform: uppercase;
   color: black;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: xx-large;
 `;
 
