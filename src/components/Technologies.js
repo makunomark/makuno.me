@@ -43,8 +43,8 @@ const Technologies = () => {
 
   return (
     <TechnologiesHolder>
-      {technologies.map((technology) => (
-        <Tag>{technology.node.name}</Tag>
+      {technologies.map((technology, index) => (
+        <Tag key={index}>{technology.node.name}</Tag>
       ))}
     </TechnologiesHolder>
   );

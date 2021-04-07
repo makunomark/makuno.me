@@ -16,6 +16,7 @@ const LandingPage = styled.div`
   display: flex;
   max-width: 112rem;
   flex-direction: column;
+  width: 100%;
   padding: 12px;
 `;
 
@@ -69,26 +70,18 @@ const LinkContent = styled.span`
 
 export default function Projects({ location }) {
   const [position, setPosition] = useState(0);
-  const [projectList, setProjectList] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
+    if (location.state == null) return;
     setPosition(location.state.index || 0);
+    setSelectedProject(location.state.project || null);
   }, [location]);
 
-  useEffect(() => {
-    if (projectList != null && projectList.length > position) {
-      setSelectedProject(projectList[position].node);
-    } else {
-      setSelectedProject(null);
-    }
-  }, [projectList]);
-
-  useEffect(() => {
-    if (projectList != null && projectList.length > position) {
-      setSelectedProject(projectList[position].node);
-    }
-  }, [position]);
+  function updateSelectedProject(project, position) {
+    setPosition(position);
+    setSelectedProject(project);
+  }
 
   return (
     <Layout>
@@ -101,29 +94,60 @@ export default function Projects({ location }) {
       <Page>
         <LandingPage>
           <ProjectListContext.Consumer>
-            {(projects) => {
-              setProjectList(projects.projectList);
-            }}
+            {(projects) =>
+              projects.projectList != null &&
+              projects.projectList.length > 0 ? (
+                <ProjectCarousel>
+                  {position - 1 < 0 ? (
+                    <FiSmile />
+                  ) : (
+                    <ProjectCarouselItem
+                      onClick={() =>
+                        updateSelectedProject(
+                          projects.projectList[position - 1].node,
+                          position - 1
+                        )
+                      }
+                    >
+                      <FiChevronLeft />
+                      <span>
+                        {projects.projectList[position - 1].node.title}
+                      </span>
+                    </ProjectCarouselItem>
+                  )}
+                  {position + 1 < projects.projectList.length ? (
+                    <ProjectCarouselItem
+                      onClick={() =>
+                        updateSelectedProject(
+                          projects.projectList[position + 1].node,
+                          position + 1
+                        )
+                      }
+                    >
+                      <span>
+                        {projects.projectList[position + 1].node.title}
+                      </span>
+                      <FiChevronRight />
+                    </ProjectCarouselItem>
+                  ) : (
+                    <FiSmile />
+                  )}
+                </ProjectCarousel>
+              ) : null
+            }
           </ProjectListContext.Consumer>
-          {projectList != null && projectList.length > 0 ? (
-            <ProjectCarousel>
-              {position - 1 < 0 ? (
-                <FiSmile />
-              ) : (
-                <ProjectCarouselItem onClick={() => setPosition(position - 1)}>
-                  <FiChevronLeft />
-                  <span>{projectList[position - 1].node.title}</span>
-                </ProjectCarouselItem>
-              )}
-              {position + 1 < projectList.length ? (
-                <ProjectCarouselItem onClick={() => setPosition(position + 1)}>
-                  <span>{projectList[position + 1].node.title}</span>
-                  <FiChevronRight />
-                </ProjectCarouselItem>
-              ) : (
-                <FiSmile />
-              )}
-            </ProjectCarousel>
+
+          {selectedProject ? (
+            <>
+              <ProjectTitle>{selectedProject.title}</ProjectTitle>
+              <ProjectDescription>
+                {selectedProject.description}
+              </ProjectDescription>
+              <TechnologiesTitle>Technologies</TechnologiesTitle>
+              {selectedProject.technologies.map((technology, index) => (
+                <span key={index}>{technology.name}</span>
+              ))}
+            </>
           ) : (
             <EmptyProjectsView>
               <FiSmile />
@@ -133,18 +157,6 @@ export default function Projects({ location }) {
               </Link>
             </EmptyProjectsView>
           )}
-          {selectedProject ? (
-            <>
-              <ProjectTitle>{selectedProject.title}</ProjectTitle>
-              <ProjectDescription>
-                {selectedProject.description}
-              </ProjectDescription>
-              <TechnologiesTitle>Technologies</TechnologiesTitle>
-              {selectedProject.technologies.map((technology) => (
-                <span>{technology.name}</span>
-              ))}
-            </>
-          ) : null}
         </LandingPage>
       </Page>
     </Layout>

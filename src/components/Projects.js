@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
 import { Link } from "gatsby";
 import React from "react";
 import ProjectListContext from "../context/ProjectListContext";
@@ -25,6 +24,7 @@ const PageBackground = styled.div`
 
 const Page = styled.div`
   max-width: 112rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +51,7 @@ const ProjectIcon = styled.img`
 
 const ProjectDetailsHolder = styled.div`
   flex: 4;
-  margin-left: 12px;
+  margin-left: 4px;
 `;
 
 const ProjectTitle = styled.p`
@@ -88,6 +88,7 @@ const ProjectsList = styled.div`
   flex-wrap: wrap;
   margin-left: 12px;
   margin-right: 12px;
+  width: 100%;
 `;
 
 const ProjectsDescription = styled.p`
@@ -96,29 +97,12 @@ const ProjectsDescription = styled.p`
   margin-left: 12px;
 `;
 
+const TechnologyHolder = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const Projects = () => {
-  const myProjects = useStaticQuery(graphql`
-    query AllStrapiProjectQuery {
-      allStrapiProject {
-        edges {
-          node {
-            technologies {
-              name
-            }
-            title
-            id
-            description
-            icon {
-              url
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const myProjectsData = myProjects.allStrapiProject.edges;
-
   return (
     <PageBackground id="projects">
       <Page>
@@ -128,35 +112,42 @@ const Projects = () => {
         </ProjectsDescription>
         <Technologies />
         <ProjectListContext.Consumer>
-          {(projects) => projects.setProjectList(myProjectsData)}
+          {(myProjectsData) => (
+            <ProjectsList>
+              {myProjectsData.projectList.map((myProject, index) => (
+                <ProjectItemHolder key={index}>
+                  <ProjectIcon
+                    src={myProject.node.icon[0].url}
+                    height={80}
+                    width={80}
+                  />
+                  <ProjectDetailsHolder>
+                    <Link
+                      to={`/project`}
+                      state={{ index, project: myProject.node }}
+                    >
+                      <ProjectTitle>{myProject.node.title}</ProjectTitle>
+                    </Link>
+                    <ProjectDescription>
+                      {myProject.node.description}
+                    </ProjectDescription>
+                    <TechnologyHolder>
+                      {myProject.node.technologies.map((technology, index) => (
+                        <div key={index}>
+                          <Technology>{technology.name}</Technology>
+                          {index ==
+                          myProject.node.technologies.length - 1 ? null : (
+                            <MidDot>·</MidDot>
+                          )}
+                        </div>
+                      ))}
+                    </TechnologyHolder>
+                  </ProjectDetailsHolder>
+                </ProjectItemHolder>
+              ))}
+            </ProjectsList>
+          )}
         </ProjectListContext.Consumer>
-        <ProjectsList>
-          {myProjectsData.map((myProject, index) => (
-            <ProjectItemHolder>
-              <ProjectIcon
-                src={myProject.node.icon[0].url}
-                height={80}
-                width={80}
-              />
-              <ProjectDetailsHolder>
-                <Link to={`/project`} state={{ index }}>
-                  <ProjectTitle>{myProject.node.title}</ProjectTitle>
-                </Link>
-                <ProjectDescription>
-                  {myProject.node.description}
-                </ProjectDescription>
-                {myProject.node.technologies.map((technology, index) => (
-                  <>
-                    <Technology>{technology.name}</Technology>
-                    {index == myProject.node.technologies.length - 1 ? null : (
-                      <MidDot>·</MidDot>
-                    )}
-                  </>
-                ))}
-              </ProjectDetailsHolder>
-            </ProjectItemHolder>
-          ))}
-        </ProjectsList>
       </Page>
     </PageBackground>
   );

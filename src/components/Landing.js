@@ -106,8 +106,8 @@ const Landing = () => {
         <Description>{nodeData.personal_description}</Description>
 
         <TagsHolder>
-          {nodeData.personal_tags.map((tag) => (
-            <Tag>{tag}</Tag>
+          {nodeData.personal_tags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
           ))}
         </TagsHolder>
 

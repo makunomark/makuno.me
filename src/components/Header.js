@@ -22,7 +22,7 @@ const NavHolder = styled.div`
   font-family: "Poppins", sans-serif;
 `;
 
-const HeaderIcon = styled.a`
+const HeaderIcon = styled.span`
   text-transform: uppercase;
   color: black;
   font-weight: bold;
@@ -30,7 +30,7 @@ const HeaderIcon = styled.a`
   cursor: pointer;
 `;
 
-const HeaderLinks = styled.a`
+const HeaderLinks = styled.span`
   text-transform: uppercase;
   color: black;
   margin-left: 6px;

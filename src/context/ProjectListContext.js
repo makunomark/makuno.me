@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { graphql, useStaticQuery } from "gatsby";
 
 const ProjectListContext = React.createContext({
   setProjectList: () => {},
@@ -7,11 +8,36 @@ const ProjectListContext = React.createContext({
 function ProjectListProvider({ children }) {
   const [projectList, setProjectList] = useState([]);
 
+  const myProjects = useStaticQuery(graphql`
+    query AllStrapiProjectQuery {
+      allStrapiProject {
+        edges {
+          node {
+            technologies {
+              name
+            }
+            title
+            id
+            description
+            icon {
+              url
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const myProjectsData = myProjects.allStrapiProject.edges;
+
+  useEffect(() => {
+    setProjectList(myProjectsData);
+  }, []);
+
   return (
     <ProjectListContext.Provider
       value={{
         projectList,
-        setProjectList: (p) => setProjectList(p),
       }}
     >
       {children}
