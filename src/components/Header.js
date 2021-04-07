@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "gatsby";
 
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -35,8 +36,8 @@ const HeaderLinks = styled.a`
   margin-left: 6px;
   margin-right: 6px;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-position: under;
+  /* text-decoration: underline; */
+  /* text-underline-position: under; */
   font-weight: 500;
 `;
 
@@ -44,9 +45,16 @@ export default function Header() {
   return (
     <Nav>
       <NavHolder>
-        <HeaderIcon>Makuno</HeaderIcon>
+        <Link to="/">
+          <HeaderIcon>Makuno</HeaderIcon>
+        </Link>
         <div>
-          <HeaderLinks>Home</HeaderLinks>
+          <Link to="/">
+            <HeaderLinks>Home</HeaderLinks>
+          </Link>
+          <Link to="/#projects">
+            <HeaderLinks>Projects</HeaderLinks>
+          </Link>
         </div>
       </NavHolder>
     </Nav>

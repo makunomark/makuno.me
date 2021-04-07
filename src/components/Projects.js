@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { graphql, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import React from "react";
-import { motion } from "framer-motion";
+import ProjectListContext from "../context/ProjectListContext";
 
 import Technologies from "./Technologies";
 
@@ -41,10 +42,11 @@ const ProjectItemHolder = styled.div`
   margin-top: 12px;
   margin-left: 4px;
   margin-right: 4px;
+  cursor: pointer;
 `;
 
 const ProjectIcon = styled.img`
-  max-width: 20%;
+  max-width: 25%;
 `;
 
 const ProjectDetailsHolder = styled.div`
@@ -56,6 +58,10 @@ const ProjectTitle = styled.p`
   color: black;
   font-weight: bold;
   font-size: large;
+  &:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
 `;
 
 const ProjectDescription = styled.p`
@@ -100,6 +106,7 @@ const Projects = () => {
               name
             }
             title
+            id
             description
             icon {
               url
@@ -113,43 +120,40 @@ const Projects = () => {
   const myProjectsData = myProjects.allStrapiProject.edges;
 
   return (
-    <PageBackground>
+    <PageBackground id="projects">
       <Page>
         <PageTitle>Projects</PageTitle>
         <ProjectsDescription>
           A showcase of projects worked on, and technologies used.
         </ProjectsDescription>
         <Technologies />
+        <ProjectListContext.Consumer>
+          {(projects) => projects.setProjectList(myProjectsData)}
+        </ProjectListContext.Consumer>
         <ProjectsList>
-          {myProjectsData.map((myProject) => (
+          {myProjectsData.map((myProject, index) => (
             <ProjectItemHolder>
-              <motion.div
-                animate={{ scale: [0.99, 1] }}
-                transition={{ duration: 0.5 }}
-                whileTap={{ scale: 0.99 }}
-                whileHover={{ scale: 1.01 }}
-              >
-                <ProjectIcon
-                  src={myProject.node.icon[0].url}
-                  height={96}
-                  width={96}
-                />
-                <ProjectDetailsHolder>
+              <ProjectIcon
+                src={myProject.node.icon[0].url}
+                height={80}
+                width={80}
+              />
+              <ProjectDetailsHolder>
+                <Link to={`/project`} state={{ index }}>
                   <ProjectTitle>{myProject.node.title}</ProjectTitle>
-                  <ProjectDescription>
-                    {myProject.node.description}
-                  </ProjectDescription>
-                  {myProject.node.technologies.map((technology, index) => (
-                    <>
-                      <Technology>{technology.name}</Technology>
-                      {index ==
-                      myProject.node.technologies.length - 1 ? null : (
-                        <MidDot>·</MidDot>
-                      )}
-                    </>
-                  ))}
-                </ProjectDetailsHolder>
-              </motion.div>
+                </Link>
+                <ProjectDescription>
+                  {myProject.node.description}
+                </ProjectDescription>
+                {myProject.node.technologies.map((technology, index) => (
+                  <>
+                    <Technology>{technology.name}</Technology>
+                    {index == myProject.node.technologies.length - 1 ? null : (
+                      <MidDot>·</MidDot>
+                    )}
+                  </>
+                ))}
+              </ProjectDetailsHolder>
             </ProjectItemHolder>
           ))}
         </ProjectsList>
