@@ -114,37 +114,43 @@ const Projects = () => {
         <ProjectListContext.Consumer>
           {(myProjectsData) => (
             <ProjectsList>
-              {myProjectsData.projectList.map((myProject, index) => (
-                <ProjectItemHolder key={index}>
-                  <ProjectIcon
-                    src={myProject.node.icon[0].url}
-                    height={80}
-                    width={80}
-                  />
-                  <ProjectDetailsHolder>
-                    <Link
-                      to={`/project`}
-                      state={{ index, project: myProject.node }}
-                    >
-                      <ProjectTitle>{myProject.node.title}</ProjectTitle>
-                    </Link>
-                    <ProjectDescription>
-                      {myProject.node.description}
-                    </ProjectDescription>
-                    <TechnologyHolder>
-                      {myProject.node.technologies.map((technology, index) => (
-                        <div key={index}>
-                          <Technology>{technology.name}</Technology>
-                          {index ==
-                          myProject.node.technologies.length - 1 ? null : (
-                            <MidDot>·</MidDot>
+              {myProjectsData.projectList != null &&
+              myProjectsData.projectList.length > 0
+                ? myProjectsData.projectList.map((myProject, index) => (
+                    <ProjectItemHolder key={index}>
+                      <ProjectIcon
+                        src={myProject.node.icon[0].url}
+                        height={80}
+                        width={80}
+                      />
+                      <ProjectDetailsHolder>
+                        <Link
+                          to={`/project`}
+                          state={{ index, project: myProject.node }}
+                        >
+                          <ProjectTitle>{myProject.node.title}</ProjectTitle>
+                        </Link>
+                        <ProjectDescription>
+                          {myProject.node.description}
+                        </ProjectDescription>
+                        <TechnologyHolder>
+                          {myProject.node.technologies.map(
+                            (technology, index) => (
+                              <div key={index}>
+                                <Technology>{technology.name}</Technology>
+                                {index ==
+                                myProject.node.technologies.length -
+                                  1 ? null : (
+                                  <MidDot>·</MidDot>
+                                )}
+                              </div>
+                            )
                           )}
-                        </div>
-                      ))}
-                    </TechnologyHolder>
-                  </ProjectDetailsHolder>
-                </ProjectItemHolder>
-              ))}
+                        </TechnologyHolder>
+                      </ProjectDetailsHolder>
+                    </ProjectItemHolder>
+                  ))
+                : null}
             </ProjectsList>
           )}
         </ProjectListContext.Consumer>
