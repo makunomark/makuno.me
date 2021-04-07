@@ -5,6 +5,7 @@ import { FiChevronLeft, FiChevronRight, FiSmile } from "react-icons/fi";
 
 import Layout from "../components/layout";
 import ProjectListContext from "../context/ProjectListContext";
+import { Link } from "gatsby";
 
 const Page = styled.div`
   display: flex;
@@ -35,8 +36,6 @@ const ProjectDescription = styled.p`
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-  max-height: 7.2em;
-  line-height: 1.8em;
 `;
 
 const ProjectCarousel = styled.div`
@@ -55,6 +54,17 @@ const ProjectCarouselItem = styled.div`
     text-underline-position: under;
     color: rgba(87, 199, 255);
   }
+`;
+
+const EmptyProjectsView = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const LinkContent = styled.a`
+  color: black;
+  text-decoration: underline;
 `;
 
 export default function Projects({ location }) {
@@ -114,11 +124,18 @@ export default function Projects({ location }) {
                 <FiSmile />
               )}
             </ProjectCarousel>
-          ) : null}
+          ) : (
+            <EmptyProjectsView>
+              <FiSmile />
+              <div>No project selected</div>
+              <Link to="/">
+                <LinkContent>Go home</LinkContent>
+              </Link>
+            </EmptyProjectsView>
+          )}
           {selectedProject ? (
             <>
               <ProjectTitle>{selectedProject.title}</ProjectTitle>
-              <p>Sep 2017 to Aug 2018</p>
               <ProjectDescription>
                 {selectedProject.description}
               </ProjectDescription>
