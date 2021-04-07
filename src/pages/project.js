@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "@emotion/styled";
+import ReactTooltip from "react-tooltip";
 import { FiChevronLeft, FiChevronRight, FiSmile } from "react-icons/fi";
 
 import Layout from "../components/layout";
@@ -108,7 +109,19 @@ export default function Projects({ location }) {
                 return (
                   <ProjectCarousel>
                     {position - 1 < 0 ? (
-                      <FiSmile />
+                      <>
+                        <span data-tip data-for="projects-beginning">
+                          <FiSmile />
+                        </span>
+                        <ReactTooltip
+                          id="projects-beginning"
+                          place="bottom"
+                          type="dark"
+                          effect="solid"
+                        >
+                          <span>Beginning of projects</span>
+                        </ReactTooltip>
+                      </>
                     ) : (
                       <ProjectCarouselItem
                         onClick={() =>
@@ -139,7 +152,19 @@ export default function Projects({ location }) {
                         <FiChevronRight />
                       </ProjectCarouselItem>
                     ) : (
-                      <FiSmile />
+                      <>
+                        <span data-tip data-for="projects-end">
+                          <FiSmile />
+                        </span>
+                        <ReactTooltip
+                          id="projects-end"
+                          place="bottom"
+                          type="dark"
+                          effect="solid"
+                        >
+                          <span>End of projects</span>
+                        </ReactTooltip>
+                      </>
                     )}
                   </ProjectCarousel>
                 );
