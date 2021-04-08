@@ -11,6 +11,7 @@ import TwitterIcon from "../images/twitter.svg";
 const Page = styled.div`
   display: flex;
   justify-content: center;
+  background-color: ${(props) => props.theme.background_lighter} !important;
 `;
 
 const LandingPage = styled.div`
@@ -32,11 +33,12 @@ const Description = styled.p`
   margin-top: 24px;
   font-weight: 400;
   text-align: center;
+  color: ${(props) => props.theme.text};
 `;
 
 const Tag = styled.span`
-  background-color: rgba(87, 199, 255, 0.2);
-  color: black;
+  background-color: ${(props) => props.theme.accent_background};
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   border-radius: 25px;
   padding-left: 12px;
@@ -53,7 +55,7 @@ const IconHolder = styled.a`
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;
-  color: black;
+  color: ${(props) => props.theme.text};
 `;
 
 const IconsHolder = styled.div`

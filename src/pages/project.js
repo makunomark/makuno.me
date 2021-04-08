@@ -10,7 +10,9 @@ import { Link } from "gatsby";
 
 const Page = styled.div`
   display: flex;
+  min-height: 95%;
   justify-content: center;
+  background-color: ${(props) => props.theme.background_lighter} !important;
 `;
 
 const LandingPage = styled.div`
@@ -22,13 +24,13 @@ const LandingPage = styled.div`
 `;
 
 const ProjectTitle = styled.p`
-  color: black;
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-size: xx-large;
 `;
 
 const TechnologiesTitle = styled.p`
-  color: black;
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-size: medium;
 `;
@@ -38,6 +40,7 @@ const ProjectDescription = styled.p`
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
+  color: ${(props) => props.theme.text_secondary};
 `;
 
 const ProjectCarousel = styled.div`
@@ -50,6 +53,7 @@ const ProjectCarousel = styled.div`
 const ProjectCarouselItem = styled.div`
   align-items: center;
   display: flex;
+  color: ${(props) => props.theme.accent};
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -65,8 +69,12 @@ const EmptyProjectsView = styled.div`
 `;
 
 const LinkContent = styled.span`
-  color: black;
+  color: ${(props) => props.theme.text};
   text-decoration: underline;
+`;
+
+const Technology = styled.span`
+  color: ${(props) => props.theme.text_secondary};
 `;
 
 export default function Projects({ location }) {
@@ -186,7 +194,7 @@ export default function Projects({ location }) {
               </ProjectDescription>
               <TechnologiesTitle>Technologies</TechnologiesTitle>
               {selectedProject.technologies.map((technology, index) => (
-                <span key={index}>{technology.name}</span>
+                <Technology key={index}>- {technology.name}</Technology>
               ))}
             </>
           ) : (

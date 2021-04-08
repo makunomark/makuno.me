@@ -7,13 +7,13 @@ import Technologies from "./Technologies";
 
 const PageTitle = styled.p`
   text-transform: uppercase;
-  color: black;
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-size: xx-large;
 `;
 
 const PageBackground = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.background} !important;
   padding-top: 24px;
   padding-bottom: 24px;
   display: flex;
@@ -35,7 +35,7 @@ const ProjectItemHolder = styled.div`
   @media (min-width: 426px) {
     width: 48%;
   }
-  background-color: white;
+  background-color: ${(props) => props.theme.background_lighter} !important;
   border-radius: 10px;
   padding: 12px;
   margin-top: 12px;
@@ -54,7 +54,7 @@ const ProjectDetailsHolder = styled.div`
 `;
 
 const ProjectTitle = styled.p`
-  color: black;
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-size: large;
   &:hover {
@@ -69,17 +69,18 @@ const ProjectDescription = styled.p`
   word-wrap: break-word;
   overflow: hidden;
   max-height: 7.2em;
+  color: ${(props) => props.theme.text_secondary};
   line-height: 1.8em;
 `;
 
 const Technology = styled.span`
-  color: rgba(87, 199, 255);
+  color: ${(props) => props.theme.accent};
 `;
 
 const MidDot = styled.span`
   margin-right: 12px;
   margin-left: 12px;
-  color: rgba(87, 199, 255);
+  color: ${(props) => props.theme.accent};
 `;
 
 const ProjectsList = styled.div`
@@ -94,6 +95,7 @@ const ProjectsDescription = styled.p`
   text-align: center;
   margin-right: 12px;
   margin-left: 12px;
+  color: ${(props) => props.theme.text_secondary};
 `;
 
 const TechnologyHolder = styled.div`

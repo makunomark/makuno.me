@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Nav = styled.nav`
-  background-color: #f5f5f5 !important;
+  background-color: ${(props) => props.theme.background} !important;
   display: flex;
   justify-content: center;
 `;
@@ -24,7 +24,7 @@ const NavHolder = styled.div`
 
 const HeaderIcon = styled.span`
   text-transform: uppercase;
-  color: black;
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-size: large;
   cursor: pointer;
@@ -32,13 +32,16 @@ const HeaderIcon = styled.span`
 
 const HeaderLinks = styled.span`
   text-transform: uppercase;
-  color: black;
+  color: ${(props) => props.theme.text};
   margin-left: 6px;
   margin-right: 6px;
   cursor: pointer;
-  /* text-decoration: underline; */
-  /* text-underline-position: under; */
   font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
 `;
 
 export default function Header() {
