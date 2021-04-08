@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
-
-import { graphql, useStaticQuery } from "gatsby";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { ThemeChangerContext } from "../context/ThemeContext";
 
 const Nav = styled.nav`
   background-color: ${(props) => props.theme.background} !important;
@@ -44,6 +44,11 @@ const HeaderLinks = styled.span`
   }
 `;
 
+const MenuItems = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
 export default function Header() {
   return (
     <Nav>
@@ -51,14 +56,23 @@ export default function Header() {
         <Link to="/">
           <HeaderIcon>Makuno</HeaderIcon>
         </Link>
-        <div>
+        <MenuItems>
           <Link to="/">
             <HeaderLinks>Home</HeaderLinks>
           </Link>
           <Link to="/#projects">
             <HeaderLinks>Projects</HeaderLinks>
           </Link>
-        </div>
+          <ThemeChangerContext.Consumer>
+            {(value) =>
+              value.activeTheme === "dark" ? (
+                <FiSun onClick={value.switchTheme} />
+              ) : (
+                <FiMoon onClick={value.switchTheme} />
+              )
+            }
+          </ThemeChangerContext.Consumer>
+        </MenuItems>
       </NavHolder>
     </Nav>
   );
