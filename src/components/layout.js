@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 import "../styles/global.css";
 import "./milligram.min.css";
+import Footer from "./Footer";
 
 const Main = styled.div`
   font-family: "Poppins", sans-serif;
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
             <>
               <Header />
               {children}
+              <Footer />
             </>
           </div>
         </div>

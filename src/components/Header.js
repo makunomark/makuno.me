@@ -8,6 +8,8 @@ const Nav = styled.nav`
   background-color: ${(props) => props.theme.background} !important;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 0;
 `;
 
 const NavHolder = styled.div`
