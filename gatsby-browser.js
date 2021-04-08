@@ -1,7 +1,10 @@
 import React from "react";
 
 import { ProjectListProvider } from "./src/context/ProjectListContext";
+import ThemeContextProvider from "./src/context/ThemeContext";
 
 export const wrapRootElement = ({ element }) => (
-  <ProjectListProvider>{element}</ProjectListProvider>
+  <ThemeContextProvider>
+    <ProjectListProvider>{element}</ProjectListProvider>
+  </ThemeContextProvider>
 );

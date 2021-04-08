@@ -3,8 +3,8 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 
 const Tag = styled.span`
-  background-color: rgba(87, 199, 255, 0.2);
-  color: black;
+  background-color: ${(props) => props.theme.accent_background};
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   border-radius: 25px;
   padding-left: 12px;
