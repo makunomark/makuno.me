@@ -13,6 +13,8 @@ export default function ThemeContextProvider({ children }) {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
     if (darkThemeMq.matches) {
       setActiveTheme(darkTheme);
+    } else {
+      setActiveTheme(lightTheme);
     }
   }, []);
 
