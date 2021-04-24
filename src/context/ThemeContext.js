@@ -11,11 +11,13 @@ export default function ThemeContextProvider({ children }) {
 
   useEffect(() => {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    const lightThemeMq = window.matchMedia("(prefers-color-scheme: light)");
     if (darkThemeMq.matches) {
       setActiveTheme(darkTheme);
-      return;
     }
-    setActiveTheme(lightTheme);
+    if (lightThemeMq.matches) {
+      setActiveTheme(lightTheme);
+    }
   }, []);
 
   function switchTheme() {
