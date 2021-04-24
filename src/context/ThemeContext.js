@@ -33,7 +33,7 @@ export default function ThemeContextProvider({ children }) {
         switchTheme: () => switchTheme(),
       }}
     >
-      <ThemeProvider theme={activeTheme} switchTheme={switchTheme}>
+      <ThemeProvider theme={lightTheme} switchTheme={switchTheme}>
         {children}
       </ThemeProvider>
     </ThemeChangerContext.Provider>
