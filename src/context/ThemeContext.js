@@ -7,18 +7,7 @@ export const ThemeChangerContext = React.createContext({
 });
 
 export default function ThemeContextProvider({ children }) {
-  const [activeTheme, setActiveTheme] = useState(lightTheme);
-
-  useEffect(() => {
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    const lightThemeMq = window.matchMedia("(prefers-color-scheme: light)");
-    if (darkThemeMq.matches) {
-      setActiveTheme(darkTheme);
-    }
-    if (lightThemeMq.matches) {
-      setActiveTheme(lightTheme);
-    }
-  }, []);
+  const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   function switchTheme() {
     if (activeTheme == darkTheme) {
