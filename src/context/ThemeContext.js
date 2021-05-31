@@ -10,8 +10,32 @@ export default function ThemeContextProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
-    switchTheme();
-  }, [children]);
+    setDefaultTheme();
+    setUpThemeListener();
+  }, []);
+
+  function setDefaultTheme() {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      setActiveTheme(darkTheme);
+    } else {
+      setActiveTheme(lightTheme);
+    }
+  }
+
+  function setUpThemeListener() {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (e.matches) {
+          setActiveTheme(darkTheme);
+        } else {
+          setActiveTheme(lightTheme);
+        }
+      });
+  }
 
   function switchTheme() {
     if (activeTheme == darkTheme) {
