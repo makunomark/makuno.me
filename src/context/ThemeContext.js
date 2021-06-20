@@ -15,10 +15,7 @@ export default function ThemeContextProvider({ children }) {
   }, []);
 
   function setDefaultTheme() {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setActiveTheme(darkTheme);
     } else {
       setActiveTheme(lightTheme);
