@@ -10,17 +10,9 @@ export default function ThemeContextProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
-    setDefaultTheme();
+    setActiveTheme(darkTheme);
     setUpThemeListener();
   }, []);
-
-  function setDefaultTheme() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setActiveTheme(darkTheme);
-    } else {
-      setActiveTheme(lightTheme);
-    }
-  }
 
   function setUpThemeListener() {
     window
