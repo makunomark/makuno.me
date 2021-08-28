@@ -10,8 +10,8 @@ export default function ThemeContextProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
-    setActiveTheme(darkTheme);
     setUpThemeListener();
+    setActiveTheme(lightTheme);
   }, []);
 
   function setUpThemeListener() {
