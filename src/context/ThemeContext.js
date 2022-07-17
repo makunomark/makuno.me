@@ -10,19 +10,19 @@ export default function ThemeContextProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
-    setUpTheme();
+    setActiveTheme(lightTheme);
+    setUpThemeListener();
   }, []);
 
-  function setUpTheme() {
+  function setUpThemeListener() {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    // darkThemeMq.addEventListener("change", (e) => {
-    //   if (e.matches) {
-    //     setActiveTheme(darkTheme);
-    //   } else {
-    //     setActiveTheme(lightTheme);
-    //   }
-    // });
-    setActiveTheme(darkThemeMq.matches ? darkTheme : lightTheme);
+    darkThemeMq.addEventListener("change", (e) => {
+      if (e.matches) {
+        setActiveTheme(darkTheme);
+      } else {
+        setActiveTheme(lightTheme);
+      }
+    });
   }
 
   function switchTheme() {
