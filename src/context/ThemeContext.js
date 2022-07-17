@@ -15,7 +15,6 @@ export default function ThemeContextProvider({ children }) {
 
   function setUpTheme() {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    setActiveTheme(darkThemeMq.matches ? darkTheme : lightTheme);
     darkThemeMq.addEventListener("change", (e) => {
       if (e.matches) {
         setActiveTheme(darkTheme);
@@ -23,6 +22,7 @@ export default function ThemeContextProvider({ children }) {
         setActiveTheme(lightTheme);
       }
     });
+    setActiveTheme(darkThemeMq.matches ? darkTheme : lightTheme);
   }
 
   function switchTheme() {
@@ -40,10 +40,7 @@ export default function ThemeContextProvider({ children }) {
         switchTheme: () => switchTheme(),
       }}
     >
-      <ThemeProvider
-        theme={activeTheme == darkTheme ? darkTheme : lightTheme}
-        switchTheme={switchTheme}
-      >
+      <ThemeProvider theme={activeTheme} switchTheme={switchTheme}>
         {children}
       </ThemeProvider>
     </ThemeChangerContext.Provider>
