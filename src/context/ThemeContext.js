@@ -15,13 +15,13 @@ export default function ThemeContextProvider({ children }) {
 
   function setUpTheme() {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    darkThemeMq.addEventListener("change", (e) => {
-      if (e.matches) {
-        setActiveTheme(darkTheme);
-      } else {
-        setActiveTheme(lightTheme);
-      }
-    });
+    // darkThemeMq.addEventListener("change", (e) => {
+    //   if (e.matches) {
+    //     setActiveTheme(darkTheme);
+    //   } else {
+    //     setActiveTheme(lightTheme);
+    //   }
+    // });
     setActiveTheme(darkThemeMq.matches ? darkTheme : lightTheme);
   }
 
